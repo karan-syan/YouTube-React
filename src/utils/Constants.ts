@@ -1,0 +1,3 @@
+export const CALL_YOUTUBE_API: string = "CALL_YOUTUBE_API";
+export const SEND_YOUTUBE_API_DATA_TO_REDUCER: string =
+  "SEND_YOUTUBE_API_DATA_TO_REDUCER";
