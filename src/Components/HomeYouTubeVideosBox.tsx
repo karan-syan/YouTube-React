@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { searchvidtype } from "../utils/types";
 interface Iprops {
   item: searchvidtype;
@@ -7,7 +8,11 @@ interface Iprops {
 
 export default function HomeYouTubeVideosBox({ item }: Iprops) {
   return (
-    <div className="flex cursor-pointer flex-col relative justify-center mb-4 w-1/4 px-2 pt-2 rounded-xl pb-2 active:bg-zinc-200">
+    <Link
+      className="flex cursor-pointer flex-col relative mb-4 w-1/4 px-2 pt-2 rounded-xl pb-2 active:bg-zinc-200"
+      to={`watch/${item.id.videoId}`}
+      state={{ vidInfo: item }}
+    >
       <div className="flex relative justify-center">
         <img className="rounded-2xl" src={item.snippet.thumbnails.medium.url} />
       </div>
@@ -29,6 +34,6 @@ export default function HomeYouTubeVideosBox({ item }: Iprops) {
           {/* <p className="text-sm text-zinc-400">{item.snip pet.channelTitle}</p> */}
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

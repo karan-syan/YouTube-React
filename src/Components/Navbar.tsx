@@ -2,6 +2,7 @@ import React from "react";
 import { AiOutlineMenu, AiOutlineSearch, AiOutlineBell } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { BsYoutube, BsFillMicFill, BsCameraVideo } from "react-icons/bs";
+import Avatar from "./Avatar";
 
 export default function Navbar() {
   return (
@@ -41,11 +42,8 @@ export default function Navbar() {
         <div className=" rounded-3xl mr-2 p-2 cursor-pointer hover:bg-zinc-200 active:bg-zinc-300">
           <BsCameraVideo className="text-2xl" />
         </div>
-        <div className=" self-center cursor-pointer rounded-3xl mr-4 p-0 w-9 h-9 ">
-          <img
-            className="rounded-3xl p-1 cursor-pointer"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDZsW_sjb-tTvyqY1UFlWuBi9el6mBTNG60A&usqp=CAU"
-          />
+        <div className=" self-center cursor-pointer rounded-3xl mr-4 p-0 w-10 h-10 ">
+          <Avatar />
         </div>
       </div>
     </div>
