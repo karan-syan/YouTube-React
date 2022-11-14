@@ -1,10 +1,10 @@
 import axios from "axios";
 
 enum urlparam {
-  maxResults = 100,
+  maxResults = 50,
   part = "snippet",
   type = "video",
-  q = "programming",
+  q = "react",
 }
 
 export const fetchData = async () => {

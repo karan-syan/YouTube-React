@@ -11,16 +11,14 @@ function App() {
 
   useEffect(() => {
     dispatch(callapi());
-  }, []);
+  }, [dispatch]);
   return (
     <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/watch/:id" element={<WatchPlay />} />
-          <Route path="/search" element={<Search />} />
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/watch/:id" element={<WatchPlay />} />
+        <Route path="/search" element={<Search />} />
+      </Routes>
     </div>
   );
 }

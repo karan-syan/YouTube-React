@@ -1,44 +1,13 @@
-import React from "react";
-interface homepagevidprops {
-  item: {
-    kind: string;
-    etag: string;
-    id: {
-      kind: string;
-      videoId: string;
-    };
-    snippet: {
-      publishedAt: string;
-      channelId: string;
-      title: string;
-      description: string;
-      thumbnails: {
-        default: {
-          url: string;
-          width: number;
-          height: number;
-        };
-        medium: {
-          url: string;
-          width: number;
-          height: number;
-        };
-        high: {
-          url: string;
-          width: number;
-          height: number;
-        };
-      };
-      channelTitle: string;
-      liveBroadcastContent: string;
-      publishTime: string;
-    };
-  };
+import axios from "axios";
+import React, { useEffect } from "react";
+import { searchvidtype } from "../utils/types";
+interface Iprops {
+  item: searchvidtype;
 }
 
-export default function HomeYouTubeVideosBox({ item }: homepagevidprops) {
+export default function HomeYouTubeVideosBox({ item }: Iprops) {
   return (
-    <div className="flex cursor-pointer flex-col relative justify-center mb-4 w-1/4 px-2 pt-1 rounded-xl pb-2 active:bg-zinc-200">
+    <div className="flex cursor-pointer flex-col relative justify-center mb-4 w-1/4 px-2 pt-2 rounded-xl pb-2 active:bg-zinc-200">
       <div className="flex relative justify-center">
         <img className="rounded-2xl" src={item.snippet.thumbnails.medium.url} />
       </div>
@@ -57,7 +26,7 @@ export default function HomeYouTubeVideosBox({ item }: homepagevidprops) {
           <p className="pt-1 text-sm text-zinc-400">
             {item.snippet.channelTitle}
           </p>
-          {/* <p className="text-sm text-zinc-400">{item.snippet.channelTitle}</p> */}
+          {/* <p className="text-sm text-zinc-400">{item.snip pet.channelTitle}</p> */}
         </div>
       </div>
     </div>
