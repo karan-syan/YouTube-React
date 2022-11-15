@@ -9,7 +9,7 @@ export default function Home() {
       <div style={{ height: "7.5vh" }}>
         <Navbar />
       </div>
-      <div className="flex mt-1" style={{ height: "92.5vh" }}>
+      <div className="flex" style={{ height: "92.5vh" }}>
         <Sidebar />
         <HomeVideos />
       </div>

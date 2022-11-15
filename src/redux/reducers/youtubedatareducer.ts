@@ -7,11 +7,11 @@ import {
 
 export const get_youtube_data = (
   data: searchvidtype[] = [],
-  action: { type: string; data: searchvidtype[] }
+  action: { type: string; apiData: searchvidtype[] }
 ) => {
   switch (action.type) {
     case SEND_YOUTUBE_API_SUCCESS:
-      data = action.data;
+      data = action.apiData;
       console.log(data);
       return data;
     default:

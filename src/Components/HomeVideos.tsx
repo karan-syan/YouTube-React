@@ -10,7 +10,7 @@ export default function HomeVideos() {
     (state: ApplicationState) => state.get_youtube_data
   );
   return (
-    <div className=" flex flex-wrap w-10/12 px-5 overflow-y-scroll pb-8 mt-3">
+    <div className=" flex flex-wrap w-10/12 px-5 justify-evenly overflow-y-scroll pb-8">
       {youtubehomepage.map((item: searchvidtype, index: number) => {
         return <HomeYouTubeVideosBox key={index} item={item} />;
       })}

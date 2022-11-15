@@ -19,7 +19,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div className="flex justify-center self-center">
+      <div className="flex justify-center w-5/12 self-center">
         <div className="flex w-full">
           <input
             type="text"
@@ -43,7 +43,11 @@ export default function Navbar() {
           <BsCameraVideo className="text-2xl" />
         </div>
         <div className=" self-center cursor-pointer rounded-3xl mr-4 p-0 w-10 h-10 ">
-          <Avatar />
+          <Avatar
+            item={
+              "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+            }
+          />
         </div>
       </div>
     </div>

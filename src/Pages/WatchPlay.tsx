@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import Navbar from "../Components/Navbar";
+import WatchPlayLeft from "../Components/WatchPlayLeft";
 import WatchPlayRight from "../Components/WatchPlayRight";
 
 export default function WatchPlay() {
@@ -11,9 +12,9 @@ export default function WatchPlay() {
       <div style={{ height: "7.5vh" }}>
         <Navbar />
       </div>
-      <div className="flex mt-3 overflow-y-scroll" style={{ height: "92.5vh" }}>
-        {/* <WatchPlayRight /> */}
-        <WatchPlayRight item={vidInfo} />
+      <div className="flex overflow-y-scroll" style={{ height: "92.5vh" }}>
+        <WatchPlayLeft item={vidInfo} />
+        <WatchPlayRight />
       </div>
     </div>
   );

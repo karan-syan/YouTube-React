@@ -1,4 +1,4 @@
-import { takeEvery, put } from "redux-saga/effects";
+import { put, takeLatest } from "redux-saga/effects";
 import { searchvidtype } from "../../utils/types";
 import {
   CALL_YOUTUBE_API,
@@ -8,15 +8,15 @@ import {
 } from "../../utils/Constants";
 import { fetchData } from "./fetching/apicall";
 
-function* gettingdataforsaga() {
+function* gettingdataforsaga(action: { type: string; data: string }) {
   try {
-    yield put({ type: SEND_YOUTUBE_API_REQUEST });
-    let data: searchvidtype[] = yield fetchData();
-    yield put({ type: SEND_YOUTUBE_API_SUCCESS, data });
+    console.log(action.data);
+    let apiData: searchvidtype[] = yield fetchData(action.data);
+    yield put({ type: SEND_YOUTUBE_API_SUCCESS, apiData });
   } catch (error) {
     yield console.warn(error);
   }
 }
 export function* youtubeSaga() {
-  yield takeEvery(CALL_YOUTUBE_API, gettingdataforsaga);
+  yield takeLatest(CALL_YOUTUBE_API, gettingdataforsaga);
 }
