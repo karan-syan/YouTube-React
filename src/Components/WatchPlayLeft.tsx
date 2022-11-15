@@ -19,8 +19,8 @@ export default function WatchPlayLeft({ item }: Iprops) {
     event.target.pauseVideo();
   };
   const opts: YouTubeProps["opts"] = {
-    height: "525",
-    width: "930",
+    height: "480",
+    width: "100%",
     playerVars: {
       autoplay: 0,
     },
@@ -38,9 +38,10 @@ export default function WatchPlayLeft({ item }: Iprops) {
 
   return (
     <div className="flex flex-col w-4/6 ">
-      <div className="flex px-3 ml-8 flex-col">
-        <div className="flex">
+      <div className="flex px-3 ml-20 mt-5 flex-col w-">
+        <div className="flex w-full">
           <YouTube
+            style={{ width: "100%" }}
             videoId={item.id.videoId}
             opts={opts}
             onReady={onPlayerReady}

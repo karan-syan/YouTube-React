@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineMenu, AiOutlineSearch, AiOutlineBell } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { BsYoutube, BsFillMicFill, BsCameraVideo } from "react-icons/bs";
 import Avatar from "./Avatar";
+import { useDispatch } from "react-redux";
+import { callapi } from "../redux/actions/callapi";
 
 export default function Navbar() {
+  const dispatch = useDispatch();
+  const [search, setsearch] = useState<string>("");
+  const [ApiCall, setApiCall] = useState<boolean>(false);
+  useEffect(() => {
+    console.log(search);
+    dispatch(callapi(search));
+  }, [ApiCall]);
+
   return (
     <div className="flex justify-between w-full pt-1">
       <div className="flex justify-center self-center px-7">
@@ -23,12 +33,24 @@ export default function Navbar() {
         <div className="flex w-full">
           <input
             type="text"
+            value={search}
             placeholder="Search"
+            onChange={(e) => {
+              setsearch(e.target.value);
+            }}
             className="border-2 w-11/12 border-slate-300 rounded-l-3xl px-6 py-1 focus:border-blue-400 outline-none"
           />
-          <div className=" flex p-0 m-0 items-center border-r-2 border-t-2 border-b-2 cursor-pointer bg-zinc-200 border-slate-300 rounded-r-3xl px-6 py-1 hover:bg-zinc-300 active:bg-zinc-400">
+          <Link
+            className=" flex p-0 m-0 items-center border-r-2 border-t-2 border-b-2 cursor-pointer bg-zinc-200 border-slate-300 rounded-r-3xl px-6 py-1 hover:bg-zinc-300 active:bg-zinc-400"
+            onClick={() => {
+              if (search !== "") {
+                setApiCall(!search);
+              }
+            }}
+            to={`${search !== "" ? "/search" : ""}`}
+          >
             <AiOutlineSearch className="text-center" />
-          </div>
+          </Link>
           <div className=" bg-zinc-100 rounded-3xl ml-2 cursor-pointer p-3 hover:bg-zinc-200 active:bg-zinc-300">
             <BsFillMicFill />
           </div>

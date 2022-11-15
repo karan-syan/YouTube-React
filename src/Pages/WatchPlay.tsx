@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import Navbar from "../Components/Navbar";
+
 import WatchPlayLeft from "../Components/WatchPlayLeft";
 import WatchPlayRight from "../Components/WatchPlayRight";
 
@@ -14,7 +15,7 @@ export default function WatchPlay() {
       </div>
       <div className="flex overflow-y-scroll" style={{ height: "92.5vh" }}>
         <WatchPlayLeft item={vidInfo} />
-        <WatchPlayRight />
+        <WatchPlayRight item={vidInfo.snippet.title} />
       </div>
     </div>
   );
