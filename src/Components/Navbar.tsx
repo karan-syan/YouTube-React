@@ -11,7 +11,6 @@ export default function Navbar() {
   const [search, setsearch] = useState<string>("");
   const [ApiCall, setApiCall] = useState<boolean>(false);
   useEffect(() => {
-    console.log(search);
     dispatch(callapi(search));
   }, [ApiCall]);
 
@@ -33,7 +32,6 @@ export default function Navbar() {
         <div className="flex w-full">
           <input
             type="text"
-            value={search}
             placeholder="Search"
             onChange={(e) => {
               setsearch(e.target.value);
@@ -44,7 +42,7 @@ export default function Navbar() {
             className=" flex p-0 m-0 items-center border-r-2 border-t-2 border-b-2 cursor-pointer bg-zinc-200 border-slate-300 rounded-r-3xl px-6 py-1 hover:bg-zinc-300 active:bg-zinc-400"
             onClick={() => {
               if (search !== "") {
-                setApiCall(!search);
+                setApiCall(!ApiCall);
               }
             }}
             to={`${search !== "" ? "/search" : ""}`}
