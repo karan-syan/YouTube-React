@@ -20,7 +20,7 @@ export default function Search() {
       <div className="flex" style={{ height: "92.5vh" }}>
         <Sidebar />
         <div className=" flex flex-wrap w-10/12 px-5 justify-start overflow-y-scroll pb-8">
-          {youtubesearchpage.map((item: searchvidtype, index: number) => {
+          {youtubesearchpage[0].map((item: searchvidtype, index: number) => {
             return (
               <VidList
                 key={index}

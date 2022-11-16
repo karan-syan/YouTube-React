@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import HomeVideos from "../Components/HomeVideos";
+import React, { useEffect } from "react";
+import { callapi } from "../redux/actions/callapi";
+import { useDispatch } from "react-redux";
 import Navbar from "../Components/Navbar";
 import Sidebar from "../Components/Sidebar";
-import { callapi } from "../redux/actions/callapi";
 
 export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(callapi("coding"));
+    let search: string = "coding";
+    let token: string = "";
+    dispatch(callapi({ search, token }));
   }, [dispatch]);
   return (
     <div className="max-h-screen overflow-hidden">

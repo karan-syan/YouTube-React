@@ -1,18 +1,22 @@
 import { put, takeLatest } from "redux-saga/effects";
-import { searchvidtype } from "../../utils/types";
+import { searchapidata } from "../../utils/types";
 import {
   CALL_YOUTUBE_API,
-  SEND_YOUTUBE_API_FAILED,
-  SEND_YOUTUBE_API_REQUEST,
   SEND_YOUTUBE_API_SUCCESS,
 } from "../../utils/Constants";
 import { fetchData } from "./fetching/apicall";
+import Search from "../../Pages/Search";
 
-function* gettingdataforsaga(action: { type: string; data: string }) {
+function* gettingdataforsaga(action: {
+  type: string;
+  data: { search: string; token: string };
+}) {
   try {
-    console.log(action.data);
-    let apiData: searchvidtype[] = yield fetchData(action.data);
-    yield put({ type: SEND_YOUTUBE_API_SUCCESS, apiData });
+    console.log(action);
+    let dat: searchapidata = yield fetchData(action.data);
+    console.log("in saga", dat);
+    let data: [searchapidata, string] = [dat, action.data.search];
+    yield put({ type: SEND_YOUTUBE_API_SUCCESS, data });
   } catch (error) {
     yield console.warn(error);
   }

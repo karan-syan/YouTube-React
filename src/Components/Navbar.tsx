@@ -5,14 +5,11 @@ import { BsYoutube, BsFillMicFill, BsCameraVideo } from "react-icons/bs";
 import Avatar from "./Avatar";
 import { useDispatch } from "react-redux";
 import { callapi } from "../redux/actions/callapi";
+import { notEqual } from "assert";
 
 export default function Navbar() {
   const dispatch = useDispatch();
   const [search, setsearch] = useState<string>("");
-  const [ApiCall, setApiCall] = useState<boolean>(false);
-  useEffect(() => {
-    dispatch(callapi(search));
-  }, [ApiCall]);
 
   return (
     <div className="flex justify-between w-full pt-1">
@@ -35,17 +32,20 @@ export default function Navbar() {
             placeholder="Search"
             onChange={(e) => {
               setsearch(e.target.value);
+              console.log(search);
             }}
             className="border-2 w-11/12 border-slate-300 rounded-l-3xl px-6 py-1 focus:border-blue-400 outline-none"
           />
           <Link
             className=" flex p-0 m-0 items-center border-r-2 border-t-2 border-b-2 cursor-pointer bg-zinc-200 border-slate-300 rounded-r-3xl px-6 py-1 hover:bg-zinc-300 active:bg-zinc-400"
             onClick={() => {
-              if (search !== "") {
-                setApiCall(!ApiCall);
+              if (search != "") {
+                console.log(search);
+                let token: string = "";
+                dispatch(callapi({ search, token }));
               }
             }}
-            to={`${search !== "" ? "/search" : ""}`}
+            to={`${search != "" ? "/search" : ""}`}
           >
             <AiOutlineSearch className="text-center" />
           </Link>

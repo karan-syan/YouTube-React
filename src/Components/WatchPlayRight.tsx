@@ -17,12 +17,14 @@ export default function WatchPlayRight({ item }: iprops) {
   const dispatch = useDispatch();
   useEffect(() => {
     console.log(item);
-    dispatch(callapi(item));
+    let search: string = item;
+    let token: string = "";
+    dispatch(callapi({ search, token }));
   }, [item]);
 
   return (
     <div className="mt-4 w-1/3">
-      {youtubeRecommended.map((val: searchvidtype, index: number) => {
+      {youtubeRecommended[0].map((val: searchvidtype, index: number) => {
         return (
           <VidList
             item={val}

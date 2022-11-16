@@ -1,4 +1,4 @@
-import { searchvidtype } from "../../utils/types";
+import { searchapidata, searchvidtype } from "../../utils/types";
 import {
   SEND_YOUTUBE_API_FAILED,
   SEND_YOUTUBE_API_REQUEST,
@@ -6,13 +6,17 @@ import {
 } from "../../utils/Constants";
 
 export const get_youtube_data = (
-  data: searchvidtype[] = [],
-  action: { type: string; apiData: searchvidtype[] }
+  data: [searchvidtype[], string, string] = [[], "", ""],
+  action: { type: string; data: [searchapidata, string] }
 ) => {
   switch (action.type) {
     case SEND_YOUTUBE_API_SUCCESS:
-      data = action.apiData;
-      console.log(data);
+      data = [
+        action.data[0].items,
+        action.data[0].nextPageToken,
+        action.data[1],
+      ];
+      console.log("in reducer", data);
       return data;
     default:
       return data;
