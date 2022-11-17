@@ -3,6 +3,7 @@ import {
   SEND_YOUTUBE_API_FAILED,
   SEND_YOUTUBE_API_REQUEST,
   SEND_YOUTUBE_API_SUCCESS,
+  SET_YOUTUBE_LOADER,
 } from "../../utils/Constants";
 
 export const get_youtube_data = (
@@ -16,6 +17,19 @@ export const get_youtube_data = (
         action.data[0].nextPageToken,
         action.data[1],
       ];
+      console.log("in reducer", data);
+      return data;
+    default:
+      return data;
+  }
+};
+export const get_youtube_loader = (
+  data: boolean = true,
+  action: { type: string; data: boolean }
+) => {
+  switch (action.type) {
+    case SET_YOUTUBE_LOADER:
+      data = action.data;
       console.log("in reducer", data);
       return data;
     default:

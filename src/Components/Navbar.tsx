@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { BsYoutube, BsFillMicFill, BsCameraVideo } from "react-icons/bs";
 import Avatar from "./Avatar";
 import { useDispatch } from "react-redux";
-import { callapi } from "../redux/actions/callapi";
+import { callapi, setloader } from "../redux/actions/callapi";
 import { notEqual } from "assert";
 
 export default function Navbar() {
@@ -42,6 +42,7 @@ export default function Navbar() {
               if (search != "") {
                 console.log(search);
                 let token: string = "";
+                dispatch(setloader(true));
                 dispatch(callapi({ search, token }));
               }
             }}

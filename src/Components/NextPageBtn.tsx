@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { callapi } from "../redux/actions/callapi";
+import { callapi, setloader } from "../redux/actions/callapi";
 import { ApplicationState } from "../redux/roots/rootreducer";
 
-export default function NextPageBtn() {
+export default function NextPageBtn({
+  scrollElement,
+}: {
+  scrollElement: React.RefObject<HTMLDivElement>;
+}) {
   const youtubeNext = useSelector(
     (state: ApplicationState) => state.get_youtube_data
   );
@@ -16,6 +20,12 @@ export default function NextPageBtn() {
         onClick={() => {
           let search: string = youtubeNext[2];
           let token: string = youtubeNext[1];
+          dispatch(setloader(true));
+          scrollElement.current?.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+          });
           dispatch(callapi({ search, token }));
         }}
       >
