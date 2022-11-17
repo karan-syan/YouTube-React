@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
-import HomeYouTubeVideosBox from "../Components/HomeYouTubeVideosBox";
+import GridVideoBox from "../Components/GridVideoBox";
 import { ApplicationState } from "../redux/roots/rootreducer";
 import { searchvidtype } from "../utils/types";
 import NextPageBtn from "../Components/NextPageBtn";
-import SkeletomVideoBox from "../Components/SkeletomVideoBox";
-import React, { useEffect, useRef, useState } from "react";
+import SkeletonVideoBox from "../Components/SkeletonVideoBox";
+import { useEffect, useRef } from "react";
 import { callapi, setloader } from "../redux/actions/callapi";
 import { useDispatch } from "react-redux";
 import Navbar from "../Components/Navbar";
@@ -38,11 +38,13 @@ export default function Home() {
           ref={elementForScroll}
         >
           {youtubeloader
-            ? SkeletomVideoBox(20, "grid")
+            ? SkeletonVideoBox(20, "grid")
             : youtubehomepage[0].map((item: searchvidtype, index: number) => {
-                return <HomeYouTubeVideosBox key={index} item={item} />;
+                return <GridVideoBox key={index} item={item} />;
               })}
-          <NextPageBtn scrollElement={elementForScroll} />
+          {youtubeloader ? null : (
+            <NextPageBtn scrollElement={elementForScroll} />
+          )}
         </div>
       </div>
     </div>

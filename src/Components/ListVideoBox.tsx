@@ -11,7 +11,7 @@ interface Iprops {
   desc: boolean;
 }
 
-export default function VidList({ item, ch, ch_img, desc }: Iprops) {
+export default function ListVideoBox({ item, ch, ch_img, desc }: Iprops) {
   const views: number = Math.floor(Math.random() * 1000);
   const { channelTitle, title, videoId, ThumbnailMedium, description } =
     Api_Distructing(item);

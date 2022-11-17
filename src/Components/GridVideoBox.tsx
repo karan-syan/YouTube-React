@@ -8,7 +8,7 @@ interface Iprops {
   item: searchvidtype;
 }
 
-export default function HomeYouTubeVideosBox({ item }: Iprops) {
+export default function GridVideoBox({ item }: Iprops) {
   const views: number = Math.floor(Math.random() * 1000);
   const { channelTitle, title, videoId, ThumbnailMedium } =
     Api_Distructing(item);

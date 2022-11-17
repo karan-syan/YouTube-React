@@ -1,7 +1,6 @@
-import React from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-export default function SkeletomVideoBox(
+export default function SkeletonVideoBox(
   times: number,
   varient: "grid" | "list"
 ) {
@@ -10,7 +9,7 @@ export default function SkeletomVideoBox(
     .map((item, index) => (
       <div
         className={`flex ${
-          varient === "grid" ? "flex-col w-1/4" : "flex-row w-full"
+          varient === "grid" ? "flex-col" : "flex-row w-full"
         }`}
         key={index + item}
       >

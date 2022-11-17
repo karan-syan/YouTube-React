@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { useSelector } from "react-redux";
 import Navbar from "../Components/Navbar";
 import NextPageBtn from "../Components/NextPageBtn";
 import Sidebar from "../Components/Sidebar";
-import SkeletomVideoBox from "../Components/SkeletomVideoBox";
-import VidList from "../Components/VidList";
+import SkeletonVideoBox from "../Components/SkeletonVideoBox";
+import ListVideoBox from "../Components/ListVideoBox";
 import { ApplicationState } from "../redux/roots/rootreducer";
 import { searchvidtype } from "../utils/types";
 
@@ -29,10 +29,10 @@ export default function Search() {
           ref={elementForScroll}
         >
           {youtubeloader
-            ? SkeletomVideoBox(20, "list")
+            ? SkeletonVideoBox(20, "list")
             : youtubesearchpage[0].map((item: searchvidtype, index: number) => {
                 return (
-                  <VidList
+                  <ListVideoBox
                     key={index}
                     item={item}
                     ch={60}
@@ -41,9 +41,11 @@ export default function Search() {
                   />
                 );
               })}
-          <div className="flex justify-center w-full">
-            <NextPageBtn scrollElement={elementForScroll} />
-          </div>
+          {youtubeloader ? null : (
+            <div className="flex justify-center w-full">
+              <NextPageBtn scrollElement={elementForScroll} />
+            </div>
+          )}
         </div>
       </div>
     </div>

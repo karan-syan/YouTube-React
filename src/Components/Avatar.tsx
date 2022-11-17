@@ -1,4 +1,3 @@
-import React from "react";
 interface iprops {
   item: string;
   varient?: "HomePage" | "Search" | "default";

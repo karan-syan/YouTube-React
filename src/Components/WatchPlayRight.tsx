@@ -1,10 +1,9 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { callapi } from "../redux/actions/callapi";
 import { useEffect } from "react";
 import { ApplicationState } from "../redux/roots/rootreducer";
 import { searchvidtype } from "../utils/types";
-import VidList from "./VidList";
+import VidList from "./ListVideoBox";
 
 interface iprops {
   item: string;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { callapi, setloader } from "../redux/actions/callapi";
