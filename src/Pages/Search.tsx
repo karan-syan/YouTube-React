@@ -37,7 +37,7 @@ export default function Search() {
                     item={item}
                     ch={60}
                     ch_img={true}
-                    description={true}
+                    desc={true}
                   />
                 );
               })}

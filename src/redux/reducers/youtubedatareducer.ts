@@ -1,7 +1,5 @@
 import { searchapidata, searchvidtype } from "../../utils/types";
 import {
-  SEND_YOUTUBE_API_FAILED,
-  SEND_YOUTUBE_API_REQUEST,
   SEND_YOUTUBE_API_SUCCESS,
   SET_YOUTUBE_LOADER,
 } from "../../utils/Constants";

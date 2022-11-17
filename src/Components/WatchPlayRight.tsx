@@ -26,13 +26,7 @@ export default function WatchPlayRight({ item }: iprops) {
     <div className="mt-4 w-1/3">
       {youtubeRecommended[0].map((val: searchvidtype, index: number) => {
         return (
-          <VidList
-            item={val}
-            key={index}
-            ch={30}
-            ch_img={false}
-            description={false}
-          />
+          <VidList item={val} key={index} ch={30} ch_img={false} desc={false} />
         );
       })}
     </div>

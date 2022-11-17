@@ -8,6 +8,7 @@ import { BiWinkSmile } from "react-icons/bi";
 import { AiOutlineLike, AiOutlineDislike, AiOutlineSend } from "react-icons/ai";
 import Avatar from "./Avatar";
 import { MdOutlineSort } from "react-icons/md";
+import { Api_Distructing } from "../utils/ApiDistruct";
 interface Iprops {
   item: searchvidtype;
 }
@@ -15,6 +16,14 @@ export default function WatchPlayLeft({ item }: Iprops) {
   const [subscribe, setsubscribe] = useState<boolean>(false);
   const [send, setsend] = useState<boolean>(false);
   const likes: number = Math.floor(Math.random() * 100);
+  const {
+    channelTitle,
+    title,
+    videoId,
+    ThumbnailMedium,
+    description,
+    publishedAt,
+  } = Api_Distructing(item);
   const onPlayerReady: YouTubeProps["onReady"] = (event) => {
     event.target.pauseVideo();
   };
@@ -28,7 +37,7 @@ export default function WatchPlayLeft({ item }: Iprops) {
 
   function subscription() {
     if (subscribe) {
-      if (window.confirm(`Unsubscribe from ${item.snippet.channelTitle}`)) {
+      if (window.confirm(`Unsubscribe from ${channelTitle}`)) {
         setsubscribe(false);
       }
     } else {
@@ -42,22 +51,22 @@ export default function WatchPlayLeft({ item }: Iprops) {
         <div className="flex w-full">
           <YouTube
             style={{ width: "100%" }}
-            videoId={item.id.videoId}
+            videoId={videoId}
             opts={opts}
             onReady={onPlayerReady}
           />
         </div>
         <div className="flex pt-3">
-          <p className="text-xl font-bold">{item.snippet.title}</p>
+          <p className="text-xl font-bold">{title}</p>
         </div>
         <div className="flex flex-row pt-1 justify-between">
           <div className="flex">
             <div className="flex cursor-pointer">
-              <Avatar item={item.snippet.thumbnails.default.url} />
+              <Avatar item={ThumbnailMedium} />
             </div>
             <div className="flex flex-col px-2 pr-7 justify-center cursor-pointer">
               <p className="text-center text-base font-semibold">
-                {item.snippet.channelTitle}
+                {channelTitle}
               </p>
             </div>
             <div
@@ -99,10 +108,8 @@ export default function WatchPlayLeft({ item }: Iprops) {
           </div>
         </div>
         <div className="flex flex-col p-4 mt-2 bg-zinc-200 rounded-lg">
-          <p className="font-bold">
-            {item.snippet.publishedAt.substring(0, 10)}
-          </p>
-          <p className="">{item.snippet.description}</p>
+          <p className="font-bold">{publishedAt.substring(0, 10)}</p>
+          <p className="">{description}</p>
         </div>
         <div className="flex flex-col mb-6">
           <div className="flex py-3 px-2">
