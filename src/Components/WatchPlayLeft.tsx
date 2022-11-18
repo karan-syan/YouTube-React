@@ -4,7 +4,7 @@ import { searchvidtype } from "../utils/types";
 import { RiShareForwardLine, RiDownloadLine } from "react-icons/ri";
 import { BsBell, BsThreeDots } from "react-icons/bs";
 import { BiWinkSmile } from "react-icons/bi";
-import GrayBtn from "./GrayBtn";
+import CustomBtn from "./CustomBtn";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import Avatar from "./Avatar";
 import { MdOutlineSort } from "react-icons/md";
@@ -88,26 +88,31 @@ export default function WatchPlayLeft({ item }: Iprops) {
             </div>
           </div>
           <div className="flex mr-5 ">
-            <GrayBtn
-              value={likes}
+            <CustomBtn
+              value={likes + "k"}
+              color="bg-zinc-200"
               varient="left-rounded"
               icon={<AiOutlineLike className="text-2xl" />}
             />
-            <GrayBtn
+            <CustomBtn
               varient="right-rounded"
+              color="bg-zinc-200"
               icon={<AiOutlineDislike className="text-2xl" />}
             />
-            <GrayBtn
+            <CustomBtn
+              color="bg-zinc-200"
               value={"Download"}
               varient="rounded"
               icon={<RiDownloadLine className="text-2xl" />}
             />
-            <GrayBtn
+            <CustomBtn
+              color="bg-zinc-200"
               value={"Share"}
               varient="rounded"
               icon={<RiShareForwardLine className="text-2xl" />}
             />
-            <GrayBtn
+            <CustomBtn
+              color="bg-zinc-200"
               varient="circle"
               icon={<BsThreeDots className="text-2xl" />}
             />

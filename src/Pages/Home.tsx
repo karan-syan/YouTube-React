@@ -2,17 +2,18 @@ import { useSelector } from "react-redux";
 import GridVideoBox from "../Components/GridVideoBox";
 import { ApplicationState } from "../redux/roots/rootreducer";
 import { searchvidtype } from "../utils/types";
-import NextPageBtn from "../Components/NextPageBtn";
 import SkeletonVideoBox from "../Components/SkeletonVideoBox";
 import { useEffect, useRef } from "react";
 import { callapi, setloader } from "../redux/actions/callapi";
 import { useDispatch } from "react-redux";
 import Header from "../Components/Header";
 import Sidebar from "../Components/Sidebar";
+import CustomBtn from "../Components/CustomBtn";
+import { AiOutlineArrowRight } from "react-icons/ai";
 
 export default function Home() {
   const dispatch = useDispatch();
-  const youtubehomepage = useSelector(
+  const youtubedata = useSelector(
     (state: ApplicationState) => state.get_youtube_data
   );
   const youtubeloader = useSelector(
@@ -39,11 +40,29 @@ export default function Home() {
         >
           {youtubeloader
             ? SkeletonVideoBox(20, "grid")
-            : youtubehomepage[0].map((item: searchvidtype, index: number) => {
+            : youtubedata[0].map((item: searchvidtype, index: number) => {
                 return <GridVideoBox key={index} item={item} />;
               })}
           {youtubeloader ? null : (
-            <NextPageBtn scrollElement={elementForScroll} />
+            <div className="w-full flex justify-end items-end">
+              <CustomBtn
+                color="bg-red-500 text-white active:bg-red-700 hover:bg-red-600 py-2"
+                icon={<AiOutlineArrowRight className="text-white" />}
+                varient="rounded"
+                value={"Next Page"}
+                onclick={() => {
+                  let search: string = youtubedata[2];
+                  let token: string = youtubedata[1];
+                  dispatch(setloader(true));
+                  elementForScroll.current?.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: "smooth",
+                  });
+                  dispatch(callapi({ search, token }));
+                }}
+              />
+            </div>
           )}
         </div>
       </div>
