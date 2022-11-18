@@ -1,9 +1,9 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import Navbar from "../Components/Navbar";
+import Header from "../Components/Header";
 
 import WatchPlayLeft from "../Components/WatchPlayLeft";
-import WatchPlayRight from "../Components/WatchPlayRight";
+import RecommendedVideosList from "../Components/RecommendedVideosList";
 
 export default function WatchPlay() {
   const location = useLocation();
@@ -11,11 +11,11 @@ export default function WatchPlay() {
   return (
     <div className="max-h-screen overflow-hidden ">
       <div style={{ height: "7.5vh" }}>
-        <Navbar />
+        <Header />
       </div>
       <div className="flex overflow-y-scroll" style={{ height: "92.5vh" }}>
         <WatchPlayLeft item={vidInfo} />
-        <WatchPlayRight item={vidInfo.snippet.title} />
+        <RecommendedVideosList item={vidInfo.snippet.title} />
       </div>
     </div>
   );

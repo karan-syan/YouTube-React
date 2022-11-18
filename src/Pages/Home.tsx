@@ -7,7 +7,7 @@ import SkeletonVideoBox from "../Components/SkeletonVideoBox";
 import { useEffect, useRef } from "react";
 import { callapi, setloader } from "../redux/actions/callapi";
 import { useDispatch } from "react-redux";
-import Navbar from "../Components/Navbar";
+import Header from "../Components/Header";
 import Sidebar from "../Components/Sidebar";
 
 export default function Home() {
@@ -29,7 +29,7 @@ export default function Home() {
   return (
     <div className="max-h-screen overflow-hidden">
       <div style={{ height: "7.5vh" }}>
-        <Navbar />
+        <Header />
       </div>
       <div className="flex" style={{ height: "92.5vh" }}>
         <Sidebar />

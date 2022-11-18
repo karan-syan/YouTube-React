@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useSelector } from "react-redux";
-import Navbar from "../Components/Navbar";
+import Header from "../Components/Header";
 import NextPageBtn from "../Components/NextPageBtn";
 import Sidebar from "../Components/Sidebar";
 import SkeletonVideoBox from "../Components/SkeletonVideoBox";
@@ -20,7 +20,7 @@ export default function Search() {
   return (
     <div className="max-h-screen overflow-hidden">
       <div style={{ height: "7.5vh" }}>
-        <Navbar />
+        <Header />
       </div>
       <div className="flex" style={{ height: "92.5vh" }}>
         <Sidebar />

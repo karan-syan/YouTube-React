@@ -4,14 +4,15 @@ import { searchvidtype } from "../utils/types";
 import { RiShareForwardLine, RiDownloadLine } from "react-icons/ri";
 import { BsBell, BsThreeDots } from "react-icons/bs";
 import { BiWinkSmile } from "react-icons/bi";
-
-import { AiOutlineLike, AiOutlineDislike, AiOutlineSend } from "react-icons/ai";
+import GrayBtn from "./GrayBtn";
+import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import Avatar from "./Avatar";
 import { MdOutlineSort } from "react-icons/md";
 import { Api_Distructing } from "../utils/ApiDistruct";
 interface Iprops {
   item: searchvidtype;
 }
+
 export default function WatchPlayLeft({ item }: Iprops) {
   const [subscribe, setsubscribe] = useState<boolean>(false);
   const [send, setsend] = useState<boolean>(false);
@@ -87,30 +88,36 @@ export default function WatchPlayLeft({ item }: Iprops) {
             </div>
           </div>
           <div className="flex mr-5 ">
-            <button className="flex flex-row justify-center items-center bg-zinc-200 px-4 ml-1 rounded-l-full hover:bg-zinc-200 active:bg-zinc-300">
-              <AiOutlineLike className="text-2xl" />
-              <p className="text-sm pl-1">{likes}k</p>
-            </button>
-            <button className="flex flex-row justify-center items-center bg-zinc-200 px-4 mr-1 border-l-2 border-zinc-300 rounded-r-full hover:bg-zinc-200 active:bg-zinc-300">
-              <AiOutlineDislike className="text-2xl" />
-            </button>
-            <button className="flex flex-row justify-center items-center bg-zinc-200 px-4 mx-1 rounded-3xl hover:bg-zinc-200 active:bg-zinc-300">
-              <RiDownloadLine className="text-2xl" />
-              <p className="text-sm pl-1">Download</p>
-            </button>
-            <button className="flex flex-row justify-center items-center bg-zinc-200 px-4 mx-1 rounded-3xl hover:bg-zinc-200 active:bg-zinc-300">
-              <RiShareForwardLine className="text-2xl" />
-              <p className="text-sm pl-1">Share</p>
-            </button>
-            <button className="flex flex-row justify-center items-center bg-zinc-200 px-2 mx-1 rounded-full hover:bg-zinc-200 active:bg-zinc-300">
-              <BsThreeDots className="text-2xl" />
-            </button>
+            <GrayBtn
+              value={likes}
+              varient="left-rounded"
+              icon={<AiOutlineLike className="text-2xl" />}
+            />
+            <GrayBtn
+              varient="right-rounded"
+              icon={<AiOutlineDislike className="text-2xl" />}
+            />
+            <GrayBtn
+              value={"Download"}
+              varient="rounded"
+              icon={<RiDownloadLine className="text-2xl" />}
+            />
+            <GrayBtn
+              value={"Share"}
+              varient="rounded"
+              icon={<RiShareForwardLine className="text-2xl" />}
+            />
+            <GrayBtn
+              varient="circle"
+              icon={<BsThreeDots className="text-2xl" />}
+            />
           </div>
         </div>
         <div className="flex flex-col p-4 mt-2 bg-zinc-200 rounded-lg">
           <p className="font-bold">{publishedAt.substring(0, 10)}</p>
           <p className="">{description}</p>
         </div>
+
         <div className="flex flex-col mb-6">
           <div className="flex py-3 px-2">
             <p className="mr-6">0 Comments</p>

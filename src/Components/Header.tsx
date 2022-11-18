@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { AiOutlineMenu, AiOutlineSearch, AiOutlineBell } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { BsYoutube, BsFillMicFill, BsCameraVideo } from "react-icons/bs";
 import Avatar from "./Avatar";
 import { useDispatch } from "react-redux";
 import { callapi, setloader } from "../redux/actions/callapi";
-import { notEqual } from "assert";
 
-export default function Navbar() {
+export default function Header() {
   const dispatch = useDispatch();
   const [search, setsearch] = useState<string>("");
 
@@ -39,14 +38,14 @@ export default function Navbar() {
           <Link
             className=" flex p-0 m-0 items-center border-r-2 border-t-2 border-b-2 cursor-pointer bg-zinc-200 border-slate-300 rounded-r-3xl px-6 py-1 hover:bg-zinc-300 active:bg-zinc-400"
             onClick={() => {
-              if (search != "") {
+              if (search !== "") {
                 console.log(search);
                 let token: string = "";
                 dispatch(setloader(true));
                 dispatch(callapi({ search, token }));
               }
             }}
-            to={`${search != "" ? "/search" : ""}`}
+            to={`${search !== "" ? "/search" : ""}`}
           >
             <AiOutlineSearch className="text-center" />
           </Link>

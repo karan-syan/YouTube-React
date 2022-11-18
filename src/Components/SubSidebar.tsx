@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "./sidebar.css";
 type sideprops = {
-  Links: { icon: any; name: string }[];
+  Links: { icon: JSX.Element; name: string }[];
 };
 export default function SubSidebar(props: sideprops) {
   return (
