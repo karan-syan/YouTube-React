@@ -6,15 +6,17 @@ import {
 
 export const get_youtube_data = (
   data: [searchvidtype[], string, string] = [[], "", ""],
-  action: { type: string; data: [searchapidata, string] }
+  action: { type: string; data: [searchapidata, string | null] }
 ) => {
   switch (action.type) {
     case SEND_YOUTUBE_API_SUCCESS:
-      data = [
-        action.data[0].items,
-        action.data[0].nextPageToken,
-        action.data[1],
-      ];
+      if (action.data[1] !== null) {
+        data = [
+          action.data[0].items,
+          action.data[0].nextPageToken,
+          action.data[1],
+        ];
+      }
       console.log("in reducer", data);
       return data;
     default:

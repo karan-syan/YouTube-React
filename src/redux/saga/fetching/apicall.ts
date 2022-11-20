@@ -7,8 +7,11 @@ enum urlparam {
   type = "video",
 }
 
-export const fetchData = async (val: { search: string; token: string }) => {
-  if (val.token === "") {
+export const fetchData = async (val: {
+  search: string | null;
+  token: string | null;
+}) => {
+  if (val.token === null) {
     let data = await axios.get(
       `${YOUTUBE_URL}q=${val.search}&part=${urlparam.part}&type=${urlparam.type}&maxResults=${urlparam.maxResults}&key=${process.env.REACT_APP_API_KEY}`
     );

@@ -17,7 +17,6 @@ export default function GridVideoBox({ item }: Iprops) {
     <Link
       className="flex cursor-pointer flex-col mb-4 w-min px-2 pt-2 rounded-xl pb-2 active:bg-zinc-200"
       to={`/watch/${videoId}`}
-      state={{ vidInfo: item }}
     >
       <div className="flex justify-center">
         <img className="rounded-2xl" src={ThumbnailMedium} alt={""} />

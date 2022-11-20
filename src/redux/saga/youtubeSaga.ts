@@ -13,13 +13,13 @@ import { store } from "../store";
 
 function* gettingdataforsaga(action: {
   type: string;
-  data: { search: string; token: string };
+  data: { search: string | null; token: string | null };
 }) {
   try {
     console.log(action);
     let dat: searchapidata = yield fetchData(action.data);
     console.log("in saga", dat);
-    let data: [searchapidata, string] = [dat, action.data.search];
+    let data: [searchapidata, string | null] = [dat, action.data.search];
     yield put({ type: SEND_YOUTUBE_API_SUCCESS, data });
     yield store.dispatch(setloader(false));
   } catch (error) {

@@ -1,6 +1,9 @@
 import { CALL_YOUTUBE_API, SET_YOUTUBE_LOADER } from "../../utils/Constants";
 
-export const callapi = (data: { search: string; token: string }) => {
+export const callapi = (data: {
+  search: string | null | undefined;
+  token: string | null;
+}) => {
   console.log("in action ", data.search);
   return {
     type: CALL_YOUTUBE_API,

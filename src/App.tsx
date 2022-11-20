@@ -3,7 +3,7 @@ import Home from "./Pages/Home";
 import Search from "./Pages/Search";
 import WatchPlay from "./Pages/WatchPlay";
 import React from "react";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/watch/:id" element={<WatchPlay />} />
-          <Route path="/search" element={<Search />} />
+          <Route path="/search/:searchname" element={<Search />} />
         </Routes>
       </div>
     </SkeletonTheme>

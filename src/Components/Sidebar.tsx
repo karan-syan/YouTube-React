@@ -18,9 +18,6 @@ import { TbMusic, TbDeviceGamepad2 } from "react-icons/tb";
 import { FaRegCompass } from "react-icons/fa";
 import { GiFilmStrip } from "react-icons/gi";
 import SubSidebar from "./SubSidebar";
-import { IconType } from "react-icons";
-import { type } from "@testing-library/user-event/dist/type";
-
 const textLinks = [
   [
     "About",
@@ -42,7 +39,7 @@ const textLinks = [
 
 export default function Sidebar() {
   interface linkdata {
-    icon: any;
+    icon: JSX.Element;
     name: string;
   }
   const mainLinks: linkdata[] = [
@@ -137,14 +134,10 @@ export default function Sidebar() {
   );
 }
 
-type textprop = {
-  id: number;
-};
-
-function TextLinkFun(props: textprop) {
+function TextLinkFun({ id }: { id: number }) {
   return (
     <ul className="flex gap-2 flex-wrap text-sm p-4 text-zinc-400">
-      {textLinks[props.id].map((name) => {
+      {textLinks[id].map((name) => {
         return <li key={name}>{name}</li>;
       })}
     </ul>

@@ -10,18 +10,22 @@ import Header from "../Components/Header";
 import Sidebar from "../Components/Sidebar";
 import CustomBtn from "../Components/CustomBtn";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import { useSearchParams } from "react-router-dom";
 
 export default function Home() {
-  const dispatch = useDispatch();
   const youtubedata = useSelector(
     (state: ApplicationState) => state.get_youtube_data
   );
   const youtubeloader = useSelector(
     (state: ApplicationState) => state.get_youtube_loader
   );
+
+  const dispatch = useDispatch();
+  const [query, setQuery] = useSearchParams();
+
   useEffect(() => {
     let search: string = "coding";
-    let token: string = "";
+    let token = query.get("pagetoken");
     dispatch(setloader(true));
     dispatch(callapi({ search, token }));
   }, [dispatch]);
@@ -52,13 +56,15 @@ export default function Home() {
                 value={"Next Page"}
                 onclick={() => {
                   let search: string = youtubedata[2];
-                  let token: string = youtubedata[1];
-                  dispatch(setloader(true));
+                  setQuery({ pagetoken: youtubedata[1] });
+                  let token = query.get("pagetoken");
+                  console.log(query.get("pagetoken"), " hello next page token");
                   elementForScroll.current?.scrollTo({
                     top: 0,
                     left: 0,
                     behavior: "smooth",
                   });
+                  dispatch(setloader(true));
                   dispatch(callapi({ search, token }));
                 }}
               />

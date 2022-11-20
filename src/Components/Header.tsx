@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineMenu, AiOutlineSearch, AiOutlineBell } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { BsYoutube, BsFillMicFill, BsCameraVideo } from "react-icons/bs";
 import Avatar from "./Avatar";
 import { useDispatch } from "react-redux";
@@ -8,7 +8,8 @@ import { callapi, setloader } from "../redux/actions/callapi";
 
 export default function Header() {
   const dispatch = useDispatch();
-  const [search, setsearch] = useState<string>("");
+  const [Search, setsearch] = useState<string>("");
+  const [query, setQuery] = useSearchParams();
 
   return (
     <div className="flex justify-between w-full pt-1">
@@ -31,21 +32,13 @@ export default function Header() {
             placeholder="Search"
             onChange={(e) => {
               setsearch(e.target.value);
-              console.log(search);
+              console.log(Search);
             }}
             className="border-2 w-11/12 border-slate-300 rounded-l-3xl px-6 py-1 focus:border-blue-400 outline-none"
           />
           <Link
             className=" flex p-0 m-0 items-center border-r-2 border-t-2 border-b-2 cursor-pointer bg-zinc-200 border-slate-300 rounded-r-3xl px-6 py-1 hover:bg-zinc-300 active:bg-zinc-400"
-            onClick={() => {
-              if (search !== "") {
-                console.log(search);
-                let token: string = "";
-                dispatch(setloader(true));
-                dispatch(callapi({ search, token }));
-              }
-            }}
-            to={`${search !== "" ? "/search" : ""}`}
+            to={`${Search !== "" ? `/search/${Search}` : ""}`}
           >
             <AiOutlineSearch className="text-center" />
           </Link>

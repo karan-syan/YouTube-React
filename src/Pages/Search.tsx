@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../Components/Header";
 import Sidebar from "../Components/Sidebar";
@@ -9,6 +9,7 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import { searchvidtype } from "../utils/types";
 import CustomBtn from "../Components/CustomBtn";
 import { callapi, setloader } from "../redux/actions/callapi";
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
 
 export default function Search() {
   const youtubeloader = useSelector(
@@ -18,8 +19,25 @@ export default function Search() {
     (state: ApplicationState) => state.get_youtube_data
   );
   const elementForScroll = useRef<HTMLDivElement>(null);
+  const [query, setQuery] = useSearchParams();
+  const { searchname } = useParams();
 
   const dispatch = useDispatch();
+  useEffect(() => {
+    const myparams = window.location.search;
+    const urlparams = new URLSearchParams(myparams);
+    if (urlparams.has("pagetoken")) {
+      let search = searchname;
+      let token = query.get("pagetoken");
+      dispatch(setloader(true));
+      dispatch(callapi({ search, token }));
+    } else {
+      let search = searchname;
+      let token = null;
+      dispatch(setloader(true));
+      dispatch(callapi({ search, token }));
+    }
+  }, [dispatch, searchname]);
 
   return (
     <div className="max-h-screen overflow-hidden">
@@ -53,8 +71,9 @@ export default function Search() {
                 varient="rounded"
                 value={"Next Page"}
                 onclick={() => {
-                  let search: string = youtubedata[2];
-                  let token: string = youtubedata[1];
+                  setQuery({ pagetoken: youtubedata[1] });
+                  let search = searchname;
+                  let token = query.get("pagetoken");
                   dispatch(setloader(true));
                   elementForScroll.current?.scrollTo({
                     top: 0,
