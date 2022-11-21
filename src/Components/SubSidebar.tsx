@@ -11,10 +11,10 @@ export default function SubSidebar(props: sideprops) {
         return (
           <NavLink
             key={name}
-            to={"/"}
+            to={name === "Home" ? "/" : name === "History" ? "/history" : ""}
             className={`pl-6 py-3 hover:bg-zinc-200 rounded-xl ${
               name === "Home" ? "sidebarBtn" : ""
-            }`}
+            }${name === "History" ? "sidebarBtn" : ""} `}
           >
             <li key={name}>
               <div className="flex items-center gap-5">

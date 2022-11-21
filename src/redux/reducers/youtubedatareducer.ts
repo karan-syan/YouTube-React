@@ -1,6 +1,7 @@
 import { searchapidata, searchvidtype } from "../../utils/types";
 import {
   SEND_YOUTUBE_API_SUCCESS,
+  SEND_YOUTUBE_HISTORY,
   SET_YOUTUBE_LOADER,
 } from "../../utils/Constants";
 
@@ -18,6 +19,27 @@ export const get_youtube_data = (
         ];
       }
       console.log("in reducer", data);
+      return data;
+    default:
+      return data;
+  }
+};
+
+export const get_recent_data = (
+  data: searchvidtype[] = [],
+  action: { type: string; data: searchvidtype | undefined }
+) => {
+  switch (action.type) {
+    case SEND_YOUTUBE_HISTORY:
+      if (action.data !== undefined) {
+        if (
+          data.find((o) => o.id.videoId === action.data?.id.videoId) ===
+          undefined
+        ) {
+          data.push(action.data);
+        }
+      }
+      console.log("hell ", data);
       return data;
     default:
       return data;

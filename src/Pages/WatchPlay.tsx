@@ -1,19 +1,22 @@
-import React from "react";
-import { useLocation, useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Header from "../Components/Header";
-
 import WatchPlayLeft from "../Components/WatchPlayLeft";
 import RecommendedVideosList from "../Components/RecommendedVideosList";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../redux/roots/rootreducer";
-import { searchvidtype } from "../utils/types";
+import { sendHistory } from "../redux/actions/callapi";
 
 export default function WatchPlay() {
   const youtubedata = useSelector(
     (state: ApplicationState) => state.get_youtube_data
   );
   const { id } = useParams();
-  let vidInfo = youtubedata[0].find((o) => o.id.videoId === id);
+  var vidInfo = youtubedata[0].find((o) => o.id.videoId === id);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(sendHistory(vidInfo));
+  }, [vidInfo]);
 
   return (
     <div className="max-h-screen overflow-hidden ">
