@@ -1,5 +1,5 @@
 # Getting Started with YouTube Clone 
-https://karan-syan.github.io/YouTube-React/
+
 <b>Technologies used:</b>
 <ul>
 <li>ReactJs</li>
